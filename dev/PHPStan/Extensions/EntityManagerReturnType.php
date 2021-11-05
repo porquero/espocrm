@@ -36,6 +36,8 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Type\Type;
 use PHPStan\Type\ObjectType;
+use PHPStan\Type\UnionType;
+use PHPStan\Type\NullType;
 
 use Espo\Entities\User;
 use Espo\Entities\Note;
@@ -97,6 +99,9 @@ class EntityManagerReturnType implements DynamicMethodReturnTypeExtension
 
         $className = $this->entityTypeEntityClassNameMap[$entityType] ?? Entity::class;
 
-        return new ObjectType($className);
+        return new UnionType([
+            new ObjectType($className),
+            new NullType(),
+        ]);
     }
 }
