@@ -52,7 +52,7 @@ class AwsS3 implements Storage
     public function __construct(Config $config)
     {
         $bucketName = $config->get('awsS3Storage.bucketName') ?? null;
-        $path = $config->get('awsS3Storage.path') ?? null;
+        $path = $config->get('awsS3Storage.path') ?? '';
         $region = $config->get('awsS3Storage.region') ?? null;
         $credentials = $config->get('awsS3Storage.credentials') ?? null;
         $endpoint = $config->get('awsS3Storage.endpoint') ?? null;
